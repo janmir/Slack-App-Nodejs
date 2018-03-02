@@ -1,0 +1,16 @@
+{
+  "name": "nodeSlack",
+  "version": "1.0.0",
+  "description": "",
+  "main": "handler.js",
+  "scripts": {
+    "test": "sls invoke local -f main -p event.json",
+    "start": "sls deploy"
+  },
+  "keywords": [],
+  "author": "janmir",
+  "license": "ISC",
+  "dependencies": {
+    "performance-now": "^2.1.0"
+  }
+}
