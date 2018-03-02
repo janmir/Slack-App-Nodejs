@@ -30,6 +30,7 @@ const fn = {
         console.log(response);      
       }
 
+      response = JSON.stringify(response);
       fn.callback(null, response);
     }else{
       console.log("Error: Callback is Null.")
@@ -63,12 +64,15 @@ module.exports.main = (event, context, callback) => {
   fn.init(callback)
 
   const response = {
-    statusCode: 200,
-    body: JSON.stringify({
-      message: 'Go Serverless v1.0! Your function executed successfully!',
-      input: event,
-    }),
+      //"response_type": "in_channel","ephemeral"
+      "text": "It's 80 degrees right now.",
+      "attachments": [
+          {
+              "text":"Partly cloudy today and tomorrow"
+          }
+      ]
   };
 
+  //Call callback function
   fn.sexyback(response);
 };

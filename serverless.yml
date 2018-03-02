@@ -1,5 +1,8 @@
 service: nodeSlack
 
+custom:
+  slack_event_path: slack
+
 provider:
   name: aws
   runtime: nodejs6.10
@@ -41,8 +44,15 @@ functions:
 
 #    Define function environment variables here
     environment:
-      DEPLOY: true
+      DEPLOY: false
       DEBUG: true
+    events:
+      - http:
+          path: ${self:custom.slack_event_path}
+          method: post
+          integration: lambda
+          response:
+            template: $input.path('$')
 
 #    The following are a few example events you can configure
 #    NOTE: Please make sure to change your handler code to work with those events
